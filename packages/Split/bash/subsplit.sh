@@ -121,7 +121,7 @@ function split_branch()
         echo " - syncing branch '${BRANCH}'"
         echo "git checkout -b ${LOCAL_BRANCH}-checkout ${BRANCH}"
         git branch
-        git checkout -b "${LOCAL_BRANCH}-checkout" "${BRANCH}" -vvv || die "Failed while git checkout branch '${BRANCH}'"
+        git checkout -b "${LOCAL_BRANCH}-checkout" "${BRANCH}" || die "Failed while git checkout branch '${BRANCH}'"
         git subtree split -q --prefix="$FROM_DIRECTORY" --branch="$LOCAL_BRANCH" "${BRANCH}" || die "Failed while git subtree split for '${BRANCH}'"
 
         git push -q --force origin ${LOCAL_BRANCH}:${BRANCH} || die "Failed pushing branch to remote repo"
